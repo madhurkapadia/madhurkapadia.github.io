@@ -1,7 +1,438 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>One Channel</title>
+
+    <style>
+   
+        body {
+            overflow:hidden;
+        }
+        video {
+            height:100%;
+            width:100%;
+            text-align: center;
+            border:0px solid silver;
+            display: table-cell;
+            vertical-align: middle;
+            color: #FFFFFF;
+            background-color: #000000;
+            font-weight: bold;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size:40px;
+            float:left;
+            z-index: 10;
+            position:absolute;
+        }
+       
+        #onloadScreen {
+            color: #FFFFFF;
+            z-index: 20;
+            position:absolute;
+            font-weight: bold;
+            width:100%;
+            height:100%;
+            background-color: #000000;
+        }
+
+
+        #LodingScreen {
+            color: #FFFFFF;
+            z-index: 20;
+            position:absolute;
+            font-weight: bold;
+            width:100%;
+            height:100%;
+            background-color: #000000;
+        }
+   
+       
+       
+        #splash {
+            color: #FFFFFF;
+            z-index: 20;
+            position:absolute;
+            font-weight: bold;
+            top:85%;
+            width:90%;
+            height:10%;
+            bottom:5%;
+            left:5%;
+            right:5%;
+            background-color: #000000;
+        }
+   
+        #Thumbnail
+        {
+            margin-top:25px;
+            margin-left:5px;
+            background-image: url(https://www.googledrive.com/host/0BzStY26d76EIUE1FX1NGZm82Sms);
+            background-repeat:no-repeat;
+            background-position:center;
+            background-size:70%;
+            text-align:center;
+            color: #FFFFFF;
+            float: left;
+            font-weight: bold;
+            width:4%;
+            height:30%;
+            background-color: transparent;
+        }
+   
+        #Message
+        {
+            margin-top:5px;
+            color: hsl(234, 84%, 28%);;
+            text-align:center;
+            font-weight: bold;
+            float:right;
+            background-color: transparent;
+        }
+       
+        #Message1
+        {
+            margin-top:85px;
+            color: hsl(234, 84%, 28%);;
+            text-align:center;
+            font-weight: bold;
+            float:right;
+            background-color: transparent;
+        }
+           
+        #Poster
+        {
+            color: #FFFFFF;
+            text-align:center;
+            z-index: 2;
+            position:absolute;
+            font-weight: bold;
+            top:25%;
+            width:50%;
+            height:50%;
+            left:25%;
+            background-color: #000000;
+        }
+       
+
+        #casticon
+        {
+          
+            z-index: 2;
+            position:relative;
+            font-weight: bold;
+            top:75%;
+            width:14%;
+            height:10%;
+            left:42%;
+            background-color: #000000;
+        }
+       
+       
+         #Poster1
+        {
+            color: #FFFFFF;
+            text-align:center;
+            z-index: 2;
+            position:absolute;
+            font-weight: bold;
+            top:25%;
+            width:50%;
+            height:50%;
+            left:25%;
+            background-color: #000000;
+        }
+       
+
+        #casticon1
+        {
+          
+            z-index: 2;
+            position:relative;
+            font-weight: bold;
+            top:63%;
+            width:14%;
+            height:10%;
+            left:49%;
+            background-color: #000000;
+        }
+       
+       
+        #welcome {
+                
+            background-image: url(https://www.googledrive.com/host/0BzStY26d76EIOVUtQ3lLY29SeHc);
+            background-repeat:no-repeat;
+            background-position:center;
+            z-index: 30;
+            position:absolute;
+            font-weight: bold;
+            width:100%;
+            height:100%;
+            background-color: #290A43;
+       
+        }
+       
+       
+        #spinner
+        {
+                
+            background-image: url(https://www.googledrive.com/host/0BzStY26d76EIdlk2RUYxN0poNDQ);
+            background-repeat:no-repeat;
+            background-position:center;
+            z-index: 20;
+            position:absolute;
+            font-weight: bold;
+            width:100%;
+            height:100%;
+            background-color: #290A43;
+           
+        }
+       
+       
+        .hidden
+        {
+            display:none;
+        }
+
+    </style>
+   
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div id="onloadScreen">
+        <div id="Poster" class="hidden">
+            <!-- change for icon-->
+            <img style='width:70%;' src='https://www.googledrive.com/host/0BzStY26d76EIMk1BazRkZHFvU0k'>
+        </div>
+        <div id="casticon" class="hidden">
+            <img style='float:left' src='https://www.googledrive.com/host/0BzStY26d76EIWUxubzd6ZEpjTEk'>
+            <span id="Message">Ready To Cast</span>
+        </div>
+    </div>   
+   
+    <div id="LodingScreen" class='hidden'>
+        <div id="Poster1" class="hidden">
+            <!-- change for icon-->
+            <img style='width:70%;' src='https://www.googledrive.com/host/0BzStY26d76EIMk1BazRkZHFvU0k'><br>
+            <p style='color:hsl(234, 84%, 28%);text-align:center;font-weight: bold;'>LOADING</p>
+        </div>
+        <div id="casticon1" class="hidden">
+            <img style='width:15%;height:10%;' src='https://www.googledrive.com/host/0BzStY26d76EINjBGaE1pYXN3TVk'>
+        </div>
+    </div> 
+   
+    <div id="splash" class="hidden">
+            <span id="Thumbnail"></span><p style='color:#FFFFFF;float:left;font-weight: bold; margin-top:27px;'>Paused</p>
+            <p style='color:#FFFFFF;float:Right;margin-top:27px;'>You are watching </p>
+            <span id="Message1"></span>
+    </div>
+
+    <video id="vid" class="hidden"></video>
+
+    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/mediaplayer/1.0.0/media_player.js"></script>
+    <script type="text/javascript">
+   
+        window.mediaElement = document.getElementById("vid");
+        onloadScreen = document.getElementById("onloadScreen");
+           
+        console.log('### Application Loaded. Starting system.');
+       
+        cast.player.api.setLoggerLevel(cast.player.api.LoggerLevel.DEBUG);
+        cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
+        window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+   
+        window.castReceiverManager.onSenderConnected = function(event) {
+             console.log("### Cast Receiver Manager - Sender Connected : " + JSON.stringify(event));
+            onloadScreen.className=onloadScreen.className.replace("hidden","");
+            document.getElementById("Poster").className=document.getElementById("Poster").className.replace("hidden","");
+            document.getElementById("casticon").className=document.getElementById("casticon").className.replace("hidden","");
+            document.getElementById("Message").className=document.getElementById("Message").className.replace("hidden","");
+               
+        }  
+   
+        window.castReceiverManager.onSenderDisconnected = function(event) {
+           
+            console.log("### Cast Receiver Manager - Sender Disconnected : " + JSON.stringify(event));
+            window.castReceiverManager.stop();
+           
+        }
+           
+           
+      
+       
+        window.mediaManager = new cast.receiver.MediaManager(window.mediaElement);
+       
+        window.mediaManager['onPlayOrig'] = window.mediaManager.onPlay;
+        window.mediaManager.onPlay = function(event) {
+           
+            console.log("### Media Manager - PLAY: " + JSON.stringify(event));
+            window.mediaManager['onPlayOrig'](event);
+               
+        }
+       
+       
+       window.mediaManager['onLoadOrig'] = window.mediaManager.onLoad;
+     
+        window.mediaManager.onLoad = function(event) {
+          
+           console.log("Media manager onload event");
+            console.log(event);
+          
+            window.mediaElement.className="hidden";
+            document.getElementById("onloadScreen").className="hidden";
+            document.getElementById("Poster").className="hidden";
+            document.getElementById("casticon").className="hidden";
+            document.getElementById("Message").className="hidden";
+              
+            window.setTimeout(function(){
+              
+                document.getElementById("LodingScreen").className=document.getElementById("LodingScreen").className.replace("hidden","");
+                document.getElementById("Poster1").className=document.getElementById("Poster1").className.replace("hidden","");
+                document.getElementById("casticon1").className=document.getElementById("casticon1").className.replace("hidden","");
+               
+                message_title=JSON.stringify(event.data.media.metadata.title);
+                //message_title=message_title.replace(/["]+/g, '');
+                //document.getElementById("Message1").innerHTML='<font size="5">'+message_title+'</font><br>'+message_data;
+               
+                cookie_auth=event.data.media.metadata.images[3]['url'];
+                cookie_auth=cookie_auth.split('=');
+                cookie_auth=cookie_auth[1];
+                  
+                console.log('=================>>>>>>'+cookie_auth);
+                if (event.data['media'] && event.data['media']['contentId'])
+                {
+             
+                        console.log('Starting media application');
+                     
+                        var url = event.data['media']['contentId'];
+                        window.host = new cast.player.api.Host({'mediaElement':window.mediaElement, 'url':url});
+                       
+                        window.host.updateManifestRequestInfo = function(requestInfo) {
+                          if (!requestInfo.url) {
+                              requestInfo.url = this.url;
+                          }
+                          console.log('manifest: '+requestInfo.url);
+                          requestInfo.withCredentials = false;
+                          };
+                           
+                        window.host.updateLicenseRequestInfo = function(requestInfo) {
+                                console.log('license: '+requestInfo.url);
+                              requestInfo.withCredentials = true;
+                          };
+                           
+                        window.host.updateSegmentRequestInfo = function(requestInfo) {
+                                console.log('segement: '+requestInfo.url);
+                              requestInfo.withCredentials = false;
+                          };
+                       
+                        licenseUrl='https://planetcast.in:8443/proxy/v1/license?providerid=Provider1&sessiondata='+cookie_auth;
+                       
+                        window.host.licenseUrl = licenseUrl;
+                       
+                        var ext = url.substring(url.lastIndexOf('.'), url.length);
+                        var initStart = event.data['media']['currentTime'] || 0;
+                       
+                        var autoplay = event.data['autoplay'] || true;
+                        var protocol = null;
+                        window.mediaElement.autoplay = autoplay;
+                        if (url.lastIndexOf('.m3u8') >= 0)
+                        {
+                   
+                          protocol = cast.player.api.CreateHlsStreamingProtocol(host);
+                        }
+                        else if (url.lastIndexOf('.mpd') >= 0)
+                        {
+                   
+                          protocol = cast.player.api.CreateDashStreamingProtocol(host);
+                        }
+                        else if (url.indexOf('.ism/') >= 0)
+                        {
+                   
+                          protocol = cast.player.api.CreateSmoothStreamingProtocol(host);
+                        }
+                       
+                        console.log(protocol);
+               
+                        host.onError = function(errorCode) {
+                            console.log("Fatal Error - " + errorCode);
+                            if (window.player) {
+                                window.player.unload();
+                                window.player = null;
+                            }
+                        };
+               
+                        console.log("we have protocol " + ext);
+                        if (protocol !== null) {
+                            console.log("Starting Media Player Library");
+                            window.player = new cast.player.api.Player(host);
+                            window.player.load(protocol, initStart);
+                        }
+                        else
+                        {
+                          
+                            window.mediaManager['onLoadOrig'](event);
+                        }
+                    }
+               
+               },
+               2000);
+               
+        }
+       
+        window.mediaManager['onEndedOrig'] = window.mediaManager.onEnded;
+        window.mediaManager.onEnded = function() {
+               
+            window.mediaElement.className="hidden";
+            onloadScreen.className=onloadScreen.className.replace("hidden","");
+            document.getElementById("Poster").className=document.getElementById("Poster").className.replace("hidden","");
+            document.getElementById("casticon").className=document.getElementById("casticon").className.replace("hidden","");
+            document.getElementById("Message").className=document.getElementById("Message").className.replace("hidden","");
+               
+            window.mediaManager['onEndedOrig']();
+        }
+       
+        window.mediaManager['onErrorOrig'] = window.mediaManager.onError;
+        window.mediaManager.onError = function(obj) {
+               
+            window.castReceiverManager.stop();
+            window.mediaManager['onErrorOrig'](obj);
+           
+        }
+           
+           
+        window.mediaManager['onPauseOrig'] = window.mediaManager.onPause;
+        window.mediaManager.onPause = function(event) { 
+             document.getElementById("splash").className=document.getElementById("splash").className.replace("hidden","");
+            window.mediaManager['onPauseOrig'](event);
+        }
+           
+           
+        window.mediaManager['onStopOrig'] = window.mediaManager.onStop;
+        window.mediaManager.onStop = function(event) {
+               
+            window.mediaManager['onStopOrig'](event);
+            window.mediaElement.className="hidden";
+            document.getElementById("welcome").className=document.getElementById("welcome").className.replace("hidden","");
+       
+        }
+       
+        
+        var appConfig = new cast.receiver.CastReceiverManager.Config();
+        appConfig.statusText = 'Ready to play'; appConfig.maxInactivity = 6000;
+        window.castReceiverManager.start(appConfig);
+       
+        window.mediaElement.onplay = function() {
+           
+            document.getElementById("Message").className="hidden";
+            document.getElementById("LodingScreen").className="hidden";
+            document.getElementById("casticon").className="hidden";
+            document.getElementById("Poster").className="hidden";
+            document.getElementById("onloadScreen").className="hidden";
+            document.getElementById("Poster1").className="hidden";
+            document.getElementById("casticon1").className="hidden";
+            document.getElementById("splash").className="hidden";
+            window.mediaElement.className=window.mediaElement.className.replace("hidden","");
+          
+        };
+    </script>
 </body>
 </html>
